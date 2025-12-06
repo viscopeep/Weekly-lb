@@ -1,23 +1,110 @@
-const ADMIN_USERNAME = "visco";
-const ADMIN_PASSWORD = "lilpeep";
-
-function login() {
-  const usernameInput = document.getElementById("adminUsername").value;
-  const passwordInput = document.getElementById("adminPassword").value;
-  const msg = document.getElementById("loginMsg");
-
-  if (usernameInput === ADMIN_USERNAME && passwordInput === ADMIN_PASSWORD) {
-    document.getElementById("loginDiv").style.display = "none";
-    document.getElementById("apiDiv").style.display = "block";
-  } else {
-    msg.textContent = "Incorrect username or password!";
-  }
+body {
+  font-family: 'Roboto Slab', serif;
+  background: linear-gradient(135deg, #0d1b2a, #1b263b);
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
 }
 
-function saveApiKey() {
-  const key = document.getElementById("apiInput").value;
-  if (key) {
-    localStorage.setItem("leaderboardApiKey", key);
-    document.getElementById("saveMsg").textContent = "API Key saved!";
-  }
+header h1 {
+  color: #00d4ff;
+  margin: 10px 0;
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 5px #000;
+}
+
+header h2 {
+  color: #ffd700;
+  margin: 5px 0 15px 0;
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 3px #000;
+}
+
+#timer {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #ffcc00;
+  font-weight: bold;
+}
+
+#signupBtn {
+  display: inline-block;
+  background: linear-gradient(45deg, #00d4ff, #ffd700);
+  color: #000;
+  font-weight: bold;
+  padding: 12px 25px;
+  border-radius: 10px;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0,212,255,0.7), 0 0 10px rgba(255,215,0,0.7);
+}
+
+#signupBtn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 0 15px rgba(0,212,255,1), 0 0 15px rgba(255,215,0,1);
+}
+
+#adminLink {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+}
+
+#adminLink a {
+  color: #00d4ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #333;
+  text-align: center;
+}
+
+th {
+  background-color: #1a1a1a;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(0,212,255,0.05);
+}
+
+tr:hover {
+  background-color: rgba(0,212,255,0.2);
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+}
+
+input, button {
+  padding: 8px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+button {
+  border: none;
+  background-color: #00d4ff;
+  color: #000;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #00aacc;
+}
+
+a {
+  text-decoration: none;
 }
