@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Admin Login</h1>
+  <div id="loginDiv">
+    <input type="text" id="adminUsername" placeholder="Username">
+    <input type="password" id="adminPassword" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="loginMsg" style="color:red;"></p>
+  </div>
+
+  <div id="apiDiv" style="display:none;">
+    <h2>Set API Key</h2>
+    <input type="text" id="apiInput" placeholder="Enter API Key">
+    <button onclick="saveApiKey()">Save API Key</button>
+    <p id="saveMsg" style="color:green;"></p>
+  </div>
+
+  <p style="margin-top:20px;"><a href="index.html" style="color:#0af;">Back to Leaderboard</a></p>
+  <script src="admin.js"></script>
+</body>
+</html>
