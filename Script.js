@@ -1,21 +1,19 @@
-const apiUrl = "YOUR_API_ENDPOINT"; // Replace with your API endpoint
+const apiBaseUrl = "https://api.roulobets.com/v1/external/affiliates";
 
 // Weekly countdown (7 days)
 let endOfWeek = localStorage.getItem("weekEnd");
 if (!endOfWeek) {
     const now = new Date();
-    endOfWeek = new Date(now.getTime() + 7*24*60*60*1000); // 7 days from now
+    endOfWeek = new Date(now.getTime() + 7*24*60*60*1000);
     localStorage.setItem("weekEnd", endOfWeek);
 } else {
     endOfWeek = new Date(endOfWeek);
 }
 
-// Update countdown every second
 function updateTimer() {
     const now = new Date();
     let diff = endOfWeek - now;
     if(diff <= 0){
-        // Reset for next week
         endOfWeek = new Date(now.getTime() + 7*24*60*60*1000);
         localStorage.setItem("weekEnd", endOfWeek);
         diff = endOfWeek - now;
@@ -29,7 +27,6 @@ function updateTimer() {
 setInterval(updateTimer, 1000);
 updateTimer();
 
-// Fetch leaderboard and show top 5 with rewards
 async function fetchLeaderboard() {
     const apiKey = localStorage.getItem("leaderboardApiKey");
     if (!apiKey) {
@@ -37,26 +34,30 @@ async function fetchLeaderboard() {
         return;
     }
 
-    try {
-        const response = await fetch(apiUrl, {
-            headers: {
-                "Authorization": `Bearer ${apiKey}`
-            }
-        });
-        let data = await response.json();
+    const now = new Date();
+    const start_at = new Date(now.getTime() - now.getDay()*24*60*60*1000);
+    const end_at = endOfWeek;
 
-        // Sort descending by wager and get top 5
+    const startStr = start_at.toISOString().split('T')[0];
+    const endStr = end_at.toISOString().split('T')[0];
+
+    const url = `${apiBaseUrl}?start_at=${startStr}&end_at=${endStr}&key=${apiKey}`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
         data.sort((a,b) => b.totalWager - a.totalWager);
-        data = data.slice(0,5);
+        const top5 = data.slice(0,5);
 
         const tbody = document.querySelector("#leaderboard tbody");
         tbody.innerHTML = "";
 
-        data.forEach((item,index) => {
+        top5.forEach((item,index) => {
             let reward = 0;
-            if(index === 0) reward = 60;      // 1st place $60
-            else if(index === 1 || index === 2) reward = 15;  // 2nd & 3rd $15
-            else if(index === 3 || index === 4) reward = 5;   // 4th & 5th $5
+            if(index === 0) reward = 60;
+            else if(index === 1 || index === 2) reward = 15;
+            else if(index === 3 || index === 4) reward = 5;
 
             const row = document.createElement("tr");
             row.innerHTML = `
@@ -67,11 +68,11 @@ async function fetchLeaderboard() {
             `;
             tbody.appendChild(row);
         });
-    } catch (err) {
+
+    } catch(err) {
         console.error("Error fetching leaderboard:", err);
     }
 }
 
-// Update every 5 seconds
 fetchLeaderboard();
-setInterval(fetchLeaderboard, 5000);
+setInterval(fetchLeaderboard, 900000); // 15 minutes
