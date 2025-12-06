@@ -4,16 +4,41 @@ body {
   color: #ffffff;
   text-align: center;
   padding: 20px;
+  margin: 0;
 }
 
-h1 {
+header h1 {
   color: #00d4ff;
+  margin: 10px 0;
+}
+
+header h2 {
+  color: #ffffff;
+  margin: 5px 0 20px 0;
+}
+
+#timer {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #ffcc00;
+}
+
+#adminLink {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+#adminLink a {
+  color: #00d4ff;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 th, td {
@@ -29,16 +54,13 @@ tr:nth-child(even) {
   background-color: #262626;
 }
 
-input {
+input, button {
   padding: 8px;
   margin: 5px;
   border-radius: 5px;
-  border: 1px solid #333;
 }
 
 button {
-  padding: 8px 15px;
-  border-radius: 5px;
   border: none;
   background-color: #00d4ff;
   color: #000;
