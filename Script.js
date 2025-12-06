@@ -18,6 +18,7 @@ function updateTimer() {
         // Reset for next week
         endOfWeek = new Date(now.getTime() + 7*24*60*60*1000);
         localStorage.setItem("weekEnd", endOfWeek);
+        diff = endOfWeek - now;
     }
     const days = Math.floor(diff / (1000*60*60*24));
     const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
