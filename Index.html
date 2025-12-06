@@ -3,25 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>$100 Roulo.gg Weekly Leaderboard</title>
+  <title>$100 Roulo.gg Weekly Board</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>$100 Roulo.gg Weekly Leaderboard</h1>
-  <p id="timer">Time left: </p>
+  <!-- Admin login link fixed top-left -->
+  <div id="adminLink">
+    <a href="admin.html">Admin Login</a>
+  </div>
 
-  <table id="leaderboard">
-    <thead>
-      <tr>
-        <th>Rank</th>
-        <th>Username</th>
-        <th>Total Wager</th>
-        <th>Reward</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Top 5 leaderboard rows go here -->
-    </tbody>
-  </table>
+  <header>
+    <h1>$100 Roulo.gg Weekly Board</h1>
+    <h2>FATVISCO . ROULO.GG</h2>
+    <p id="timer">Time left: </p>
+  </header>
 
-  <p style="margin-top:20px;"><a href="admin.html" style="color:#0af;">Admin Login</a
+  <main>
+    <table id="leaderboard">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Username</th>
+          <th>Total Wager</th>
+          <th>Reward</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Top 5 leaderboard rows go here -->
+      </tbody>
+    </table>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
